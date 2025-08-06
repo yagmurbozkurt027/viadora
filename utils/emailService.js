@@ -11,19 +11,19 @@ const transporter = nodemailer.createTransport({
 
 const emailTemplates = {
   welcome: (username) => ({
-    subject: 'Butik Proje\'ye Hoş Geldiniz! 🎉',
+    subject: "Viadora'ye Hoş Geldiniz! 🎉",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
         <div style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px;">
           <h1 style="margin: 0; font-size: 28px;">🎉 Hoş Geldiniz!</h1>
-          <p style="margin: 10px 0 0 0; font-size: 16px;">Butik Proje ailesine katıldığınız için teşekkürler</p>
+          <p style="margin: 10px 0 0 0; font-size: 16px;">Viadora ailesine katıldığınız için teşekkürler</p>
         </div>
         
         <div style="background: white; padding: 30px; border-radius: 10px; margin-top: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
           <h2 style="color: #333; margin-top: 0;">Merhaba ${username}!</h2>
           
           <p style="color: #666; line-height: 1.6;">
-            Butik Proje'ye kayıt olduğunuz için teşekkür ederiz! Artık aşağıdaki özelliklerden yararlanabilirsiniz:
+            Viadora'ya kayıt olduğunuz için teşekkür ederiz! Artık aşağıdaki özelliklerden yararlanabilirsiniz:
           </p>
           
           <ul style="color: #666; line-height: 1.8;">
@@ -34,7 +34,7 @@ const emailTemplates = {
           </ul>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="http://localhost:3000" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
+            <a href="http://localhost:6600" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
               🚀 Alışverişe Başla
             </a>
           </div>
@@ -69,7 +69,7 @@ const emailTemplates = {
           </p>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="http://localhost:3000/urunler" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
+            <a href="http://localhost:6600/urunler" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
               👀 Ürünü İncele
             </a>
           </div>
@@ -101,7 +101,7 @@ const emailTemplates = {
           </p>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="http://localhost:3000/gamification" style="background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
+            <a href="http://localhost:6600/gamification" style="background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
               🎮 Gamification'ı Görüntüle
             </a>
           </div>
@@ -133,7 +133,7 @@ const emailTemplates = {
           </p>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="http://localhost:3000/gamification" style="background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
+            <a href="http://localhost:6600/gamification" style="background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
               🎮 Seviyenizi Görüntüle
             </a>
           </div>
@@ -172,7 +172,7 @@ const emailTemplates = {
           </p>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="http://localhost:3000/urunler" style="background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
+            <a href="http://localhost:6600/urunler" style="background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block;">
               🛒 Hemen Al
             </a>
           </div>

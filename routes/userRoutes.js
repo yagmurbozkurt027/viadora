@@ -319,7 +319,7 @@ router.post('/setup-2fa',
 
     const speakeasy = require('speakeasy');
     const secret = speakeasy.generateSecret({
-      name: `Butik Proje (${user.email})`
+      name: `Viadora (${user.email})`
     });
 
     user.twoFactorSecret = secret.base32;

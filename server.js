@@ -25,7 +25,7 @@ const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Butik Proje API',
+      title: 'Viadora API',
       version: '1.0.0',
       description: 'E-ticaret uygulaması için REST API',
       contact: {
@@ -35,7 +35,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3001',
+        url: 'http://localhost:6602',
         description: 'Geliştirme sunucusu'
       }
     ],
@@ -57,7 +57,7 @@ const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.set('trust proxy', 1);
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: ['http://localhost:6600', 'http://127.0.0.1:6600'],
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
@@ -91,6 +91,14 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Test endpoint for gamification
+app.get('/api/test-gamification', (req, res) => {
+  res.json({
+    message: 'Gamification API çalışıyor',
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/cart", require("./routes/cartRoutes"));
@@ -98,6 +106,11 @@ app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/transactions", require("./routes/transactionRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));
 app.use("/api/stats", require("./routes/statsRoutes"));
+
+// Yeni sistem route'ları
+app.use("/api/barcode", require("./routes/barcode"));
+app.use("/api/invoices", require("./routes/invoice"));
+app.use("/api/goods-receipt", require("./routes/goodsReceipt"));
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/api/gamification", require("./routes/gamificationRoutes"));
 app.use("/api/notifications", require("./routes/notificationRoutes"));
@@ -285,7 +298,7 @@ mongoose.connect("mongodb://localhost:27017/butik-db")
     log.error("MongoDB bağlantı hatası", { error: err.message });
   });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 6602;
 server.listen(PORT, () => {
   log.info(`Server başlatıldı`, {
     port: PORT,

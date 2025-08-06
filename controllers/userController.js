@@ -183,7 +183,7 @@ const setup2FA = async (req, res) => {
 
     // Yeni secret oluştur
     const secret = speakeasy.generateSecret({
-      name: `Butik Proje (${user.email})`
+      name: `Viadora (${user.email})`
     });
 
     user.twoFactorSecret = secret.base32;
