@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -35,7 +37,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:6602',
+        url: `http://localhost:${process.env.PORT || 6602}`,
         description: 'Geliştirme sunucusu'
       }
     ],
@@ -57,7 +59,7 @@ const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.set('trust proxy', 1);
 
 app.use(cors({
-  origin: ['http://localhost:6600', 'http://127.0.0.1:6600'],
+  origin: [process.env.FRONTEND_URL || 'http://localhost:6600', 'http://127.0.0.1:6600'],
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
@@ -290,7 +292,7 @@ function sendToUser(userId, message) {
   }
 }
 
-mongoose.connect("mongodb://localhost:27017/butik-db")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/viadora")
   .then(() => {
     log.info("MongoDB bağlantısı başarılı");
   })

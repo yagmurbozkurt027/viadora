@@ -1,7 +1,9 @@
 // cleanProducts.js
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
-const uri = 'mongodb://127.0.0.1:27017/butik-db'; // Gerekirse kendi bağlantı adresini yaz
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/viadora'; // .env'den al
 const Product = require('./models/Product');
 
 async function cleanProducts() {

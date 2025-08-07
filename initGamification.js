@@ -1,8 +1,10 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 const User = require('./models/user');
 
 // MongoDB bağlantısı
-mongoose.connect('mongodb://localhost:27017/butik-db')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/viadora')
   .then(() => {
     console.log('MongoDB bağlantısı başarılı');
     initGamification();
