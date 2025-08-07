@@ -24,10 +24,10 @@ const generalLimiter = rateLimit({
 
 // Login endpoint için özel rate limiter (daha sıkı)
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 dakika
-  max: 5, // IP başına maksimum 5 login denemesi
+  windowMs: 1 * 60 * 1000, // 1 dakika
+  max: 10, // IP başına maksimum 10 login denemesi
   message: {
-    error: 'Çok fazla giriş denemesi. Lütfen 15 dakika sonra tekrar deneyin.'
+    error: 'Çok fazla giriş denemesi. Lütfen 1 dakika sonra tekrar deneyin.'
   },
   standardHeaders: true,
   legacyHeaders: false,
@@ -38,7 +38,7 @@ const loginLimiter = rateLimit({
       email: req.body.email
     });
     res.status(429).json({
-      error: 'Çok fazla giriş denemesi. Lütfen 15 dakika sonra tekrar deneyin.'
+      error: 'Çok fazla giriş denemesi. Lütfen 1 dakika sonra tekrar deneyin.'
     });
   }
 });

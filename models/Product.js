@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
   
   // Barkod sistemi
   barcodes: [{ 
-    code: { type: String, required: true, unique: true },
+    code: { type: String, required: false, unique: true, sparse: true },
     type: { type: String, enum: ['Ana', 'Beden', 'Renk'], default: 'Ana' },
     beden: { type: String, default: '' },
     color: { type: String, default: '' }

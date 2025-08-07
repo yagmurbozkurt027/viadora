@@ -99,4 +99,7 @@ Thumbs.db
 
 # Temporary files
 tmp/
-temp/ 
+temp/
+
+# Viadora directory
+viadora/ 
