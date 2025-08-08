@@ -1,6 +1,5 @@
 const Invoice = require('../models/Invoice');
 const Product = require('../models/Product');
-const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
 
@@ -31,6 +30,9 @@ const generateInvoiceNumber = async (type) => {
 // Yeni fatura oluşturma
 const createInvoice = async (req, res) => {
   try {
+    console.log('Fatura oluşturma isteği:', req.body);
+    console.log('Kullanıcı:', req.user);
+
     const {
       invoiceType,
       customer,
@@ -66,6 +68,7 @@ const createInvoice = async (req, res) => {
 
       return {
         ...item,
+        productId: item.productId || '6894c855ec0ef7cebbb533ca', // Geçici ürün ID
         totalPrice: itemTotal - itemDiscount + itemTax
       };
     });
@@ -87,16 +90,15 @@ const createInvoice = async (req, res) => {
       deliveryNote,
       importData,
       promotion,
-      createdBy: req.user.id
+      createdBy: req.user?.id || '64f1234567890abcdef12345' // Geçici kullanıcı ID
     });
 
     await invoice.save();
 
-    // PDF oluştur
-    const pdfPath = await generateInvoicePDF(invoice);
-
-    invoice.pdfPath = pdfPath;
-    await invoice.save();
+    // PDF oluşturma geçici olarak devre dışı
+    // const pdfPath = await generateInvoicePDF(invoice);
+    // invoice.pdfPath = pdfPath;
+    // await invoice.save();
 
     res.json({
       success: true,
@@ -234,87 +236,12 @@ const deleteInvoice = async (req, res) => {
   }
 };
 
-// PDF oluşturma
+// PDF oluşturma - geçici olarak devre dışı
 const generateInvoicePDF = async (invoice) => {
   return new Promise((resolve, reject) => {
     try {
-      const doc = new PDFDocument({ margin: 50 });
-      const fileName = `invoice_${invoice.invoiceNumber}_${Date.now()}.pdf`;
-      const filePath = path.join(__dirname, '../uploads/invoices', fileName);
-
-      // Dizin yoksa oluştur
-      const dir = path.dirname(filePath);
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-
-      const stream = fs.createWriteStream(filePath);
-      doc.pipe(stream);
-
-      // Başlık
-      doc.fontSize(20).text('FATURA', { align: 'center' });
-      doc.moveDown();
-      doc.fontSize(12).text(`Fatura No: ${invoice.invoiceNumber}`);
-      doc.text(`Tarih: ${new Date(invoice.invoiceDate).toLocaleDateString('tr-TR')}`);
-      doc.text(`Tip: ${invoice.invoiceType}`);
-      doc.moveDown();
-
-      // Müşteri/Tedarikçi bilgileri
-      if (invoice.customer) {
-        doc.fontSize(14).text('MÜŞTERİ BİLGİLERİ');
-        doc.fontSize(10).text(`Ad: ${invoice.customer.name}`);
-        if (invoice.customer.taxNumber) doc.text(`Vergi No: ${invoice.customer.taxNumber}`);
-        if (invoice.customer.address) doc.text(`Adres: ${invoice.customer.address}`);
-        doc.moveDown();
-      }
-
-      if (invoice.supplier && invoice.supplier.name) {
-        doc.fontSize(14).text('TEDARİKÇİ BİLGİLERİ');
-        doc.fontSize(10).text(`Ad: ${invoice.supplier.name}`);
-        if (invoice.supplier.taxNumber) doc.text(`Vergi No: ${invoice.supplier.taxNumber}`);
-        if (invoice.supplier.address) doc.text(`Adres: ${invoice.supplier.address}`);
-        doc.moveDown();
-      }
-
-      // Ürün tablosu
-      doc.fontSize(14).text('ÜRÜNLER');
-      doc.moveDown();
-
-      // Tablo başlığı
-      const tableTop = doc.y;
-      doc.fontSize(10);
-      doc.text('Ürün', 50, tableTop);
-      doc.text('Miktar', 200, tableTop);
-      doc.text('Birim Fiyat', 280, tableTop);
-      doc.text('Toplam', 380, tableTop);
-
-      // Ürünler
-      let y = tableTop + 20;
-      invoice.items.forEach(item => {
-        doc.text(item.name, 50, y);
-        doc.text(item.quantity.toString(), 200, y);
-        doc.text(item.unitPrice.toFixed(2) + ' TL', 280, y);
-        doc.text(item.totalPrice.toFixed(2) + ' TL', 380, y);
-        y += 15;
-      });
-
-      doc.moveDown(2);
-
-      // Toplamlar
-      doc.text(`Ara Toplam: ${invoice.subtotal.toFixed(2)} TL`, { align: 'right' });
-      doc.text(`KDV: ${invoice.taxAmount.toFixed(2)} TL`, { align: 'right' });
-      if (invoice.discountAmount > 0) {
-        doc.text(`İndirim: -${invoice.discountAmount.toFixed(2)} TL`, { align: 'right' });
-      }
-      doc.fontSize(12).text(`GENEL TOPLAM: ${invoice.totalAmount.toFixed(2)} TL`, { align: 'right' });
-
-      doc.end();
-
-      stream.on('finish', () => {
-        resolve(filePath);
-      });
-
-      stream.on('error', reject);
+      // Geçici olarak boş string döndür
+      resolve('');
     } catch (error) {
       reject(error);
     }
@@ -331,14 +258,8 @@ const downloadInvoicePDF = async (req, res) => {
       return res.status(404).json({ error: 'Fatura bulunamadı' });
     }
 
-    if (!invoice.pdfPath || !fs.existsSync(invoice.pdfPath)) {
-      // PDF yoksa yeniden oluştur
-      const pdfPath = await generateInvoicePDF(invoice);
-      invoice.pdfPath = pdfPath;
-      await invoice.save();
-    }
-
-    res.download(invoice.pdfPath, `fatura_${invoice.invoiceNumber}.pdf`);
+    // Geçici olarak PDF indirme devre dışı
+    res.status(501).json({ error: 'PDF indirme özelliği geçici olarak kullanılamıyor' });
   } catch (error) {
     console.error('PDF indirme hatası:', error);
     res.status(500).json({ error: 'Sunucu hatası' });
