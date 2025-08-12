@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { MessageCircle, Phone, ShoppingBag, Users, Shield, Truck, Star, Heart } from 'lucide-react';
 import AnimatedBackground from './AnimatedBackground';
-import BusinessCardQR from './components/BusinessCardQR';
+
 
 function LogoModal({ open, onClose }) {
   if (!open) return null;
@@ -479,21 +479,7 @@ export default function Home() {
           )}
         </div>
         
-        {/* Kartvizit QR Bölümü */}
-        <div className="relative z-10 mt-12">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-purple-600 mb-4">
-              📇 Kartvizit QR Kodu
-            </h2>
-            <p className="text-gray-600 text-lg">
-              İletişim bilgilerinizi kolayca paylaşın
-            </p>
-          </div>
-          
-          <div className="flex justify-center">
-            <BusinessCardQR />
-          </div>
-        </div>
+
       </div>
     </>
   );
