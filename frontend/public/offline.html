@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butik Proje - Çevrimdışı</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .offline-container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        .retry-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .retry-btn:hover {
+            transform: translateY(-2px);
+        }
+        .features {
+            margin-top: 2rem;
+            text-align: left;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .feature-icon {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        <h1>Çevrimdışı Mod</h1>
+        <p>
+            İnternet bağlantınız kesildi. Ancak endişelenmeyin! 
+            Daha önce görüntülediğiniz sayfalar hala erişilebilir.
+        </p>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 Yeniden Dene
+        </button>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✅</span>
+                Favori ürünleriniz görüntülenebilir
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✅</span>
+                Sepet bilgileriniz korunur
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✅</span>
+                Profil bilgileriniz erişilebilir
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✅</span>
+                Daha önce görülen sayfalar çalışır
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Bağlantı durumunu kontrol et
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }
+
+        // Online/offline event listener'ları
+        window.addEventListener('online', checkConnection);
+        
+        // Her 5 saniyede bir bağlantıyı kontrol et
+        setInterval(checkConnection, 5000);
+    </script>
+</body>
+</html> 
