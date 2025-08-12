@@ -31,6 +31,8 @@ const TikTokIcon = () => (
 
 export default function TanitimPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const [showPhoneModal, setShowPhoneModal] = useState(false);
+  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -77,43 +79,23 @@ export default function TanitimPage() {
   ];
 
   const handleWhatsAppClick = () => {
-    // İki WhatsApp numarası arasında seçim yap
-    const whatsappNumbers = [
-      { name: "Yagmur", number: "905344252740" },
-      { name: "İlayda", number: "905394865128" }
-    ];
-    
-    // Basit bir seçim dialogu
-    const selected = window.confirm(
-      `Hangi WhatsApp numarasına mesaj göndermek istiyorsunuz?\n\n` +
-      `1. ${whatsappNumbers[0].name}: +90 ${whatsappNumbers[0].number.slice(0, 3)} ${whatsappNumbers[0].number.slice(3, 6)} ${whatsappNumbers[0].number.slice(6)}\n` +
-      `2. ${whatsappNumbers[1].name}: +90 ${whatsappNumbers[1].number.slice(0, 3)} ${whatsappNumbers[1].number.slice(3, 6)} ${whatsappNumbers[1].number.slice(6)}\n\n` +
-      `Tamam = ${whatsappNumbers[1].name}, İptal = ${whatsappNumbers[0].name}`
-    );
-    
-    const phoneNumber = selected ? whatsappNumbers[1].number : whatsappNumbers[0].number;
+    setShowWhatsAppModal(true);
+  };
+
+  const handleWhatsAppSelection = (phoneNumber) => {
     const message = "Merhaba! Butik hakkında bilgi almak istiyorum.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
+    setShowWhatsAppModal(false);
   };
 
   const handlePhoneClick = () => {
-    // İki telefon numarası arasında seçim yap
-    const phoneNumbers = [
-      { name: "Yagmur", number: "+90 534 425 2740" },
-      { name: "İlayda", number: "+90 539 486 5128" }
-    ];
-    
-    // Basit bir seçim dialogu
-    const selected = window.confirm(
-      `Hangi numarayı aramak istiyorsunuz?\n\n` +
-      `1. ${phoneNumbers[0].name}: ${phoneNumbers[0].number}\n` +
-      `2. ${phoneNumbers[1].name}: ${phoneNumbers[1].number}\n\n` +
-      `Tamam = ${phoneNumbers[1].name}, İptal = ${phoneNumbers[0].name}`
-    );
-    
-    const phoneNumber = selected ? phoneNumbers[1].number : phoneNumbers[0].number;
+    setShowPhoneModal(true);
+  };
+
+  const handlePhoneSelection = (phoneNumber) => {
     window.location.href = `tel:${phoneNumber}`;
+    setShowPhoneModal(false);
   };
 
   return (
@@ -371,17 +353,109 @@ export default function TanitimPage() {
         </div>
       </motion.section>
 
-      {/* Floating WhatsApp Button */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0 }}
-        transition={{ duration: 0.5, delay: 3.5 }}
-        onClick={handleWhatsAppClick}
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50"
-        aria-label="WhatsApp Destek"
-      >
-        <MessageCircle className="w-6 h-6" />
-      </motion.button>
-    </div>
-  );
-}
+             {/* Floating WhatsApp Button */}
+       <motion.button
+         initial={{ opacity: 0, scale: 0 }}
+         animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0 }}
+         transition={{ duration: 0.5, delay: 3.5 }}
+         onClick={handleWhatsAppClick}
+         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50"
+         aria-label="WhatsApp Destek"
+       >
+         <MessageCircle className="w-6 h-6" />
+       </motion.button>
+
+       {/* WhatsApp Modal */}
+       {showWhatsAppModal && (
+         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+           <motion.div 
+             initial={{ scale: 0.5, opacity: 0 }} 
+             animate={{ scale: 1, opacity: 1 }}
+             transition={{ duration: 0.3 }}
+             className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6"
+           >
+             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+               Hangi WhatsApp numarasına mesaj göndermek istiyorsunuz?
+             </h3>
+             <div className="space-y-3 mb-6">
+               <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                 <p className="text-gray-900 dark:text-white font-medium">Yagmur</p>
+                 <p className="text-gray-600 dark:text-gray-300 text-sm">+90 534 425 2740</p>
+               </div>
+               <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                 <p className="text-gray-900 dark:text-white font-medium">İlayda</p>
+                 <p className="text-gray-600 dark:text-gray-300 text-sm">+90 539 486 5128</p>
+               </div>
+             </div>
+             <div className="flex gap-3">
+               <button
+                 onClick={() => handleWhatsAppSelection("905344252740")}
+                 className="flex-1 bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-lg font-semibold transition-colors"
+               >
+                 Yağmur
+               </button>
+               <button
+                 onClick={() => handleWhatsAppSelection("905394865128")}
+                 className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold transition-colors"
+               >
+                 İlayda
+               </button>
+             </div>
+             <button
+               onClick={() => setShowWhatsAppModal(false)}
+               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-2xl font-bold"
+             >
+               ×
+             </button>
+           </motion.div>
+         </div>
+       )}
+
+       {/* Phone Modal */}
+       {showPhoneModal && (
+         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+           <motion.div 
+             initial={{ scale: 0.5, opacity: 0 }} 
+             animate={{ scale: 1, opacity: 1 }}
+             transition={{ duration: 0.3 }}
+             className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6"
+           >
+             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+               Hangi numarayı aramak istiyorsunuz?
+             </h3>
+             <div className="space-y-3 mb-6">
+               <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                 <p className="text-gray-900 dark:text-white font-medium">Yagmur</p>
+                 <p className="text-gray-600 dark:text-gray-300 text-sm">+90 534 425 2740</p>
+               </div>
+               <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                 <p className="text-gray-900 dark:text-white font-medium">İlayda</p>
+                 <p className="text-gray-600 dark:text-gray-300 text-sm">+90 539 486 5128</p>
+               </div>
+             </div>
+             <div className="flex gap-3">
+               <button
+                 onClick={() => handlePhoneSelection("+90 534 425 2740")}
+                 className="flex-1 bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-lg font-semibold transition-colors"
+               >
+                 Yağmur
+               </button>
+               <button
+                 onClick={() => handlePhoneSelection("+90 539 486 5128")}
+                 className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold transition-colors"
+               >
+                 İlayda
+               </button>
+             </div>
+             <button
+               onClick={() => setShowPhoneModal(false)}
+               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-2xl font-bold"
+             >
+               ×
+             </button>
+           </motion.div>
+         </div>
+       )}
+     </div>
+   );
+ }
