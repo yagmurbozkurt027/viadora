@@ -88,7 +88,7 @@ export default function TanitimPage() {
       `Hangi WhatsApp numarasına mesaj göndermek istiyorsunuz?\n\n` +
       `1. ${whatsappNumbers[0].name}: +90 ${whatsappNumbers[0].number.slice(0, 3)} ${whatsappNumbers[0].number.slice(3, 6)} ${whatsappNumbers[0].number.slice(6)}\n` +
       `2. ${whatsappNumbers[1].name}: +90 ${whatsappNumbers[1].number.slice(0, 3)} ${whatsappNumbers[1].number.slice(3, 6)} ${whatsappNumbers[1].number.slice(6)}\n\n` +
-      `Tamam = ${whatsappNumbers[0].name}, İptal = ${whatsappNumbers[1].name}`
+      `Yağmur = ${whatsappNumbers[0].name}, İlayda = ${whatsappNumbers[1].name}`
     );
     
     const phoneNumber = selected ? whatsappNumbers[0].number : whatsappNumbers[1].number;
@@ -109,7 +109,7 @@ export default function TanitimPage() {
       `Hangi numarayı aramak istiyorsunuz?\n\n` +
       `1. ${phoneNumbers[0].name}: ${phoneNumbers[0].number}\n` +
       `2. ${phoneNumbers[1].name}: ${phoneNumbers[1].number}\n\n` +
-      `Tamam = ${phoneNumbers[0].name}, İptal = ${phoneNumbers[1].name}`
+      `Yağmur = ${phoneNumbers[0].name}, İlayda = ${phoneNumbers[1].name}`
     );
     
     const phoneNumber = selected ? phoneNumbers[0].number : phoneNumbers[1].number;
