@@ -1,0 +1,6 @@
+[1mdiff --git a/frontend b/frontend[m
+[1m--- a/frontend[m
+[1m+++ b/frontend[m
+[36m@@ -1 +1 @@[m
+[31m-Subproject commit b0eaf90999136d61d3f2da81281b8f013ff94cc9[m
+[32m+[m[32mSubproject commit b0eaf90999136d61d3f2da81281b8f013ff94cc9-dirty[m
