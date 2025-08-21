@@ -116,6 +116,7 @@ app.use("/api/goods-receipt", require("./routes/goodsReceipt"));
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/api/gamification", require("./routes/gamificationRoutes"));
 app.use("/api/notifications", require("./routes/notificationRoutes"));
+app.use("/api/wholesale", require("./routes/wholesaleRoutes"));
 
 app.use(notFoundHandler);
 

@@ -115,7 +115,7 @@ export default function TanitimPage() {
             className="flex justify-center mb-8"
           >
             <img
-              src="/WhatsApp_Görsel_2025-08-06_saat_14.46.29_44ec4450-removebg-preview-removebg-preview.png"
+                              src="/viadora-logo.png"
               alt="Viadora Logo"
               className="w-32 h-32 md:w-40 md:h-40 object-contain"
             />

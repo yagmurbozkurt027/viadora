@@ -25,7 +25,7 @@ function LogoModal({ open, onClose }) {
           ×
         </button>
         <img
-          src="/WhatsApp_Görsel_2025-08-06_saat_14.46.29_44ec4450-removebg-preview-removebg-preview.png"
+                          src="/viadora-logo.png"
           alt="Viadora Logo"
           className="w-96 h-96 md:w-[500px] md:h-[500px] object-contain"
         />

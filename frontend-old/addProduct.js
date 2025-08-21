@@ -20,4 +20,4 @@ axios.post('http://localhost:3000/api/products', data, {
   .catch(error => {
     console.error('❌ Ürün eklenemedi:');
     console.error(error.response?.data || error.message);
-  });
+  }); 

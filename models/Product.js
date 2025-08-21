@@ -52,6 +52,14 @@ const productSchema = new mongoose.Schema({
   salePrice: { type: Number, required: true },
   discountPrice: { type: Number, default: 0 },
   
+  // Toptan satış fiyatları
+  wholesalePricing: {
+    wholesale: { type: Number, default: 0 },      // Toptan fiyat
+    bulk: { type: Number, default: 0 },           // Büyük miktar fiyatı
+    minimumWholesale: { type: Number, default: 10 }, // Toptan için min. adet
+    minimumBulk: { type: Number, default: 50 }    // Büyük miktar için min. adet
+  },
+  
   // Stok yönetimi
   minStock: { type: Number, default: 0 },
   maxStock: { type: Number, default: 1000 },

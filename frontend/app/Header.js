@@ -74,7 +74,7 @@ export default function Header() {
     setIsDark(!isDark);
   };
 
-  const logoSrc = "/WhatsApp_Görsel_2025-08-06_saat_14.46.29_44ec4450-removebg-preview-removebg-preview.png";
+  const logoSrc = "/viadora-logo.png";
 
   return (
     <header className={`flex items-center justify-between px-2 md:px-4 py-3 shadow-lg border-b transition-colors duration-300 ${
@@ -175,6 +175,11 @@ export default function Header() {
           isDark ? 'text-gray-300 hover:text-cyan-400' : 'text-gray-700 hover:text-cyan-600'
         }`}>
           🌟 Tanıtım
+        </Link>
+        <Link href="/toptan-kayit" className={`transition-colors ${
+          isDark ? 'text-gray-300 hover:text-orange-400' : 'text-gray-700 hover:text-orange-600'
+        }`}>
+          🏭 Toptan Müşteri
         </Link>
         <Link href="/profil" className={`transition-colors ${
           isDark ? 'text-gray-300 hover:text-blue-400' : 'text-gray-700 hover:text-blue-600'
