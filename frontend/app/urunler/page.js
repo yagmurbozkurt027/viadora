@@ -210,13 +210,13 @@ export default function UrunlerPage() {
       const categories = ["all", ...new Set(products.map(p => p.category).filter(Boolean))];
 
   return (
-    <main 
+    <div 
       ref={pullToRefresh.ref}
       style={pullToRefresh.style}
-              className="min-h-screen bg-white dark:bg-gray-900 p-4 md:p-8"
+      className="h-screen bg-white dark:bg-gray-900 p-0 md:p-8 relative z-10 w-full overflow-x-hidden overflow-y-auto"
     >
       {/* Pull-to-Refresh Indicator */}
-      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center">
+      <div className="fixed top-0 left-0 right-0 z-20 flex justify-center">
         <div 
           className={`transition-all duration-300 ${
             pullToRefresh.isRefreshing 
@@ -233,7 +233,7 @@ export default function UrunlerPage() {
       </div>
 
       {/* Pull-to-Refresh Text */}
-      <div className="fixed top-16 left-0 right-0 z-40 flex justify-center">
+      <div className="fixed top-16 left-0 right-0 z-20 flex justify-center">
         <div 
           className={`transition-all duration-300 text-sm ${
             pullToRefresh.pullDistance > 40 
@@ -249,25 +249,25 @@ export default function UrunlerPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto w-full overflow-x-hidden">
         {/* Başlık */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
+        <div className="text-center mb-1 sm:mb-4">
+          <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-1">
             🛍️ Ürünlerimiz
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-xs text-gray-600 dark:text-gray-400">
             En kaliteli ürünlerimizi keşfedin
           </p>
         </div>
       
       {/* Arama ve Filtreleme Bölümü */}
       <div 
-        className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-8"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-0 mb-1 max-w-full overflow-hidden"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+        <div className="grid grid-cols-1 gap-0 mb-1">
           {/* Arama */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-0">
               🔍 Arama
             </label>
             <input
@@ -275,19 +275,19 @@ export default function UrunlerPage() {
               placeholder="Ürün ara..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-0 py-0 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs"
             />
           </div>
 
           {/* Kategori Filtresi */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-0">
               📂 Kategori
             </label>
             <select
               value={selectedCategory}
               onChange={e => setSelectedCategory(e.target.value)}
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-0 py-0 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs"
             >
               {categories.map(category => (
                 <option key={category} value={category}>
@@ -299,37 +299,37 @@ export default function UrunlerPage() {
 
           {/* Fiyat Aralığı */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-0">
               💰 Fiyat Aralığı
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               <input
                 type="number"
                 placeholder="Min"
                 value={priceRange.min}
                 onChange={e => setPriceRange({ ...priceRange, min: e.target.value })}
-                className="w-1/2 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-1/2 border border-gray-300 dark:border-gray-600 rounded-md px-0 py-0 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs"
               />
               <input
                 type="number"
                 placeholder="Max"
                 value={priceRange.max}
                 onChange={e => setPriceRange({ ...priceRange, max: e.target.value })}
-                className="w-1/2 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-1/2 border border-gray-300 dark:border-gray-600 rounded-md px-0 py-0 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs"
               />
             </div>
           </div>
 
           {/* Sıralama */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-0">
               📊 Sıralama
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               <select
                 value={sortBy}
                 onChange={e => setSortBy(e.target.value)}
-                className="flex-1 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 border border-gray-300 dark:border-gray-600 rounded-md px-0 py-0 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs"
               >
                 <option value="name">İsim</option>
                 <option value="price">Fiyat</option>
@@ -337,7 +337,7 @@ export default function UrunlerPage() {
               </select>
               <button
                 onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-                className="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                className="px-0 py-0 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-xs"
                 title={sortOrder === "asc" ? "Artan" : "Azalan"}
               >
                 {sortOrder === "asc" ? "↑" : "↓"}
@@ -348,7 +348,7 @@ export default function UrunlerPage() {
 
         {/* Filtreleri Temizle */}
         <div className="flex justify-between items-center">
-          <div className="text-sm text-gray-800 dark:text-gray-400">
+          <div className="text-xs text-gray-800 dark:text-gray-400">
             {filteredProducts.length} ürün bulundu
           </div>
           <button
@@ -359,17 +359,17 @@ export default function UrunlerPage() {
               setSortBy("name");
               setSortOrder("asc");
             }}
-            className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+            className="px-1 py-0 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors text-xs"
           >
             🗑️ Filtreleri Temizle
           </button>
         </div>
               </div>
         <div 
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+          className="grid grid-cols-2 gap-3 w-full"
         >
-                  <div className="col-span-full text-center text-gray-700 dark:text-gray-500 mb-4">
-          Debug: {filteredProducts.length} ürün bulundu
+                  <div className="col-span-full text-center text-gray-700 dark:text-gray-500 mb-1 text-xs">
+          {filteredProducts.length} ürün bulundu
         </div>
         {filteredProducts.length === 0 && (
           <div className="col-span-full text-center text-gray-500">Hiç ürün bulunamadı.</div>
@@ -386,6 +386,6 @@ export default function UrunlerPage() {
         ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

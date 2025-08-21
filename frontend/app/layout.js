@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
     <html lang="tr" className="dark">
       <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
         <PwaInit />
-        <div className="relative z-50">
+        <div className="relative z-[9999]">
           <Header />
         </div>
-        <main className="flex-1 flex flex-col items-center justify-center w-full relative z-10">
+        <main className="flex-1 flex flex-col items-center justify-center w-full relative z-10 pt-16">
           {children}
         </main>
         <ToastContainer 
