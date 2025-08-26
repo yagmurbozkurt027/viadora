@@ -7,7 +7,7 @@ export async function POST(request) {
     // Email template'ini al
     const templates = {
       welcome: {
-        subject: 'Viadora'ye Hoş Geldiniz!',
+        subject: 'Viadora\'ya Hoş Geldiniz!',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h1 style="color: #3b82f6;">Hoş Geldiniz, ${data.username}!</h1>
