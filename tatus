@@ -4,3 +4,8 @@
 [36m@@ -1 +1 @@[m
 [31m-Subproject commit cf981dab002086e5cc880253b5337ac5c92f2f2d[m
 [32m+[m[32mSubproject commit cf981dab002086e5cc880253b5337ac5c92f2f2d-dirty[m
+[33md18054e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Add wholesale customer features and update various components
+[33m9302ff0[m feat: özel modal dialog'lar eklendi - Yağmur ve İlayda butonları
+[33m843f8f6[m fix: numara seçiminde Tamam=İlayda, İptal=Yağmur olarak düzeltildi
+[33m25687cf[m update: numara seçiminde Tamam/İptal yerine Yağmur/İlayda yazıldı
+[33m98b24ca[m remove: kartvizit QR kodu kaldırıldı
