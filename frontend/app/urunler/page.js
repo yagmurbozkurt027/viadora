@@ -23,7 +23,7 @@ export default function UrunlerPage() {
   const fetchProducts = async () => {
     try {
       console.log("Ürünler yükleniyor...");
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/products`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://butik-proje-a02ueo36q-yagmurs-projects-54afa3cf.vercel.app'}/api/products`);
       console.log("API Response status:", res.status);
       console.log("API Response ok:", res.ok);
       
@@ -115,7 +115,7 @@ export default function UrunlerPage() {
     }
 
     try {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/users/toggle-favorite`, {
+              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://butik-proje-a02ueo36q-yagmurs-projects-54afa3cf.vercel.app'}/api/users/toggle-favorite`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ export default function UrunlerPage() {
       
       console.log('API isteği gönderiliyor:', requestBody);
 
-              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/users/user-stock`, {
+              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://butik-proje-a02ueo36q-yagmurs-projects-54afa3cf.vercel.app'}/api/users/user-stock`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
