@@ -9,11 +9,11 @@ export const getApiUrl = () => {
   if (typeof window !== 'undefined') {
     return window.location.hostname === 'localhost' 
       ? (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602')
-      : 'https://butik-proje-a02ueo36q-yagmurs-projects-54afa3cf.vercel.app';
+      : 'https://butik-proje-1y7w6wirb-yagmurs-projects-54afa3cf.vercel.app';
   }
   
   // Fallback
-  return process.env.NEXT_PUBLIC_API_URL || 'https://butik-proje-a02ueo36q-yagmurs-projects-54afa3cf.vercel.app';
+  return process.env.NEXT_PUBLIC_API_URL || 'https://butik-proje-1y7w6wirb-yagmurs-projects-54afa3cf.vercel.app';
 };
 
 // API çağrıları için helper fonksiyon
