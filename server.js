@@ -62,9 +62,11 @@ app.use(cors({
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:6600', 
     'http://127.0.0.1:6600',
+    'http://localhost:6600',
     'https://frontend-4mnm2m8zy-yagmurs-projects-54afa3cf.vercel.app',
     'https://frontend-ltxmv4ihj-yagmurs-projects-54afa3cf.vercel.app',
     'https://frontend-eoev82wvy-yagmurs-projects-54afa3cf.vercel.app',
+    'https://frontend-ligd5qbcv-yagmurs-projects-54afa3cf.vercel.app',
     'https://viadora.com.tr'
   ],
   credentials: true
