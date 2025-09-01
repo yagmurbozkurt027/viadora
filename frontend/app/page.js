@@ -142,13 +142,17 @@ export default function Home() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     const width = canvas.width = window.innerWidth;
-    const height = canvas.height = 400;
+    const height = canvas.height = window.innerWidth < 768 ? 300 : 400;
 
-    // 1. Yazıyı canvas'a çiz
+    // 1. Yazıyı canvas'a çiz - Mobil responsive
     ctx.clearRect(0, 0, width, height);
-    ctx.font = "bold 64px Poppins, sans-serif";
+    
+    // Ekran boyutuna göre font boyutu ayarla
+    const fontSize = width < 768 ? 32 : width < 1024 ? 48 : 64;
+    ctx.font = `bold ${fontSize}px Poppins, sans-serif`;
     ctx.textAlign = "center";
-    ctx.fillStyle = "#3b82f6"; // Altın rengi
+    ctx.fillStyle = "#3b82f6";
+    
     const text = `Hoş geldin, ${username}!`;
     ctx.fillText(text, width / 2, height / 2);
 
@@ -382,11 +386,11 @@ export default function Home() {
           ref={canvasRef}
           style={{ width: "100%", height: 400, display: "block", pointerEvents: "none" }}
         />
-        <div className="text-center mt-8 mb-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-purple-600 mb-4">
+        <div className="text-center mt-8 mb-4 px-4">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-purple-600 mb-4 leading-tight">
             Tarzınla Parla, Tacınla Yüksel, Kanatlarınla Uç!
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-sm sm:text-base md:text-lg">
             Viadora'ya göz atın.
           </p>
         </div>
