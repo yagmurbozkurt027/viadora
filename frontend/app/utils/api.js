@@ -1,6 +1,6 @@
 // API URL'yi dinamik olarak belirle
 export const getApiUrl = () => {
-  // Production'da environment variable kullan
+  // Production'da Render backend URL'i kullan
   if (process.env.NEXT_PUBLIC_API_URL) {
     return process.env.NEXT_PUBLIC_API_URL;
   }
@@ -9,11 +9,11 @@ export const getApiUrl = () => {
   if (typeof window !== 'undefined') {
     return window.location.hostname === 'localhost' 
       ? (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602')
-      : 'http://localhost:6602';
+      : 'https://viadora-backend.onrender.com';
   }
   
-  // Fallback
-  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602';
+  // Fallback - Render backend URL'i
+  return process.env.NEXT_PUBLIC_API_URL || 'https://viadora-backend.onrender.com';
 };
 
 // API çağrıları için helper fonksiyon

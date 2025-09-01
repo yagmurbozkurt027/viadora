@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: viadora-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://yagmurbozkurt027:yagmur123@cluster0.mongodb.net/viadora
+      - key: JWT_SECRET
+        value: viadora-super-gizli-jwt-secret-2024
+      - key: FRONTEND_URL
+        value: https://frontend-abp3sg0nk-yagmurs-projects-54afa3cf.vercel.app

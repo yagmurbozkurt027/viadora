@@ -73,7 +73,9 @@ app.use(cors({
     'https://frontend-9ggy1xhw0-yagmurs-projects-54afa3cf.vercel.app',
     'https://frontend-flft3jd2i-yagmurs-projects-54afa3cf.vercel.app',
     'https://frontend-hnqrz3a7p-yagmurs-projects-54afa3cf.vercel.app',
-    'https://viadora.com.tr'
+    'https://viadora.com.tr',
+    'https://butik-proje.vercel.app',
+    'https://*.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
