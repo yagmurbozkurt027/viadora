@@ -17,7 +17,7 @@ export default function ProductDetailPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/products/${productId}`);
+        const response = await fetch(`http://localhost:6602/api/products/${productId}`);
         if (response.ok) {
           const data = await response.json();
           setProduct(data);
@@ -50,7 +50,7 @@ export default function ProductDetailPage() {
     }
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/users/toggle-favorite`, {
+      const response = await fetch(`http://localhost:6602/api/users/toggle-favorite`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export default function ProductDetailPage() {
         return;
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/users/user-stock`, {
+      const response = await fetch(`http://localhost:6602/api/users/user-stock`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

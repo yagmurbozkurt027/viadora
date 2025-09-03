@@ -22,12 +22,16 @@ export default function GamificationPage() {
       fetchGamification();
       fetchLeaderboard();
       fetchBadges();
+    } else {
+      // userId yoksa da leaderboard'u yükle
+      fetchLeaderboard();
+      setLoading(false);
     }
   }, [userId]);
 
   const fetchGamification = async () => {
     try {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/gamification/${userId}`);
+      const response = await fetch(`http://localhost:6602/api/gamification/${userId}`);
       const data = await response.json();
       
       if (data && typeof data === 'object') {
@@ -44,7 +48,7 @@ export default function GamificationPage() {
 
   const fetchLeaderboard = async () => {
     try {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/gamification/leaderboard`);
+      const response = await fetch(`http://localhost:6602/api/gamification/leaderboard`);
       const data = await response.json();
       
       if (Array.isArray(data)) {
@@ -61,7 +65,7 @@ export default function GamificationPage() {
 
   const fetchBadges = async () => {
     try {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/gamification/${userId}/badges`);
+      const response = await fetch(`http://localhost:6602/api/gamification/${userId}/badges`);
       const data = await response.json();
       
       if (Array.isArray(data)) {
@@ -86,7 +90,7 @@ export default function GamificationPage() {
 
   const updateTaskProgress = async (taskId, progress) => {
     try {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/gamification/${userId}/tasks`, {
+      const response = await fetch(`http://localhost:6602/api/gamification/${userId}/tasks`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
