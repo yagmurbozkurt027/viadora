@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
+import { getApiUrl } from '../../utils/api';
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
@@ -17,7 +18,7 @@ export default function ProductDetailPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:6602/api/products/${productId}`);
+        const response = await fetch(`${getApiUrl()}/api/products/${productId}`);
         if (response.ok) {
           const data = await response.json();
           setProduct(data);
@@ -50,7 +51,7 @@ export default function ProductDetailPage() {
     }
 
     try {
-      const response = await fetch(`http://localhost:6602/api/users/toggle-favorite`, {
+      const response = await fetch(`${getApiUrl()}/api/users/toggle-favorite`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +92,7 @@ export default function ProductDetailPage() {
         return;
       }
 
-      const response = await fetch(`http://localhost:6602/api/users/user-stock`, {
+      const response = await fetch(`${getApiUrl()}/api/users/user-stock`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

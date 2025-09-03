@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { getApiUrl } from '../utils/api';
 
 export default function GamificationPage() {
   const [gamification, setGamification] = useState(null);
@@ -36,7 +37,7 @@ export default function GamificationPage() {
     }
     
     try {
-      const response = await fetch(`http://localhost:6602/api/gamification/${userId}`);
+      const response = await fetch(`${getApiUrl()}/api/gamification/${userId}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -59,7 +60,7 @@ export default function GamificationPage() {
 
   const fetchLeaderboard = async () => {
     try {
-      const response = await fetch(`http://localhost:6602/api/gamification/leaderboard`);
+      const response = await fetch(`${getApiUrl()}/api/gamification/leaderboard`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -88,7 +89,7 @@ export default function GamificationPage() {
     }
     
     try {
-      const response = await fetch(`http://localhost:6602/api/gamification/${userId}/badges`);
+      const response = await fetch(`${getApiUrl()}/api/gamification/${userId}/badges`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -119,7 +120,7 @@ export default function GamificationPage() {
 
   const updateTaskProgress = async (taskId, progress) => {
     try {
-      const response = await fetch(`http://localhost:6602/api/gamification/${userId}/tasks`, {
+      const response = await fetch(`${getApiUrl()}/api/gamification/${userId}/tasks`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

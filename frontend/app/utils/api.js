@@ -1,7 +1,14 @@
 // API URL'yi dinamik olarak belirle
 export const getApiUrl = () => {
-  // Her zaman localhost backend kullan
-  return 'http://localhost:6602';
+  // Production'da Vercel backend, development'da localhost
+  if (typeof window !== 'undefined') {
+    if (window.location.hostname === 'localhost') {
+      return 'http://localhost:6602';
+    } else {
+      return 'https://butik-proje-h1zam5njc-yagmurs-projects-54afa3cf.vercel.app';
+    }
+  }
+  return 'https://butik-proje-h1zam5njc-yagmurs-projects-54afa3cf.vercel.app';
 };
 
 // API çağrıları için helper fonksiyon

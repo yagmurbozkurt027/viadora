@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { getApiUrl } from "../utils/api";
 
 export default function StoklarimPage() {
   const [stocks, setStocks] = useState([]);
@@ -16,7 +17,7 @@ export default function StoklarimPage() {
     try {
       setLoading(true);
       const userId = localStorage.getItem("userId");
-      const response = await fetch(`http://localhost:6602/api/users/${userId}`);
+      const response = await fetch(`${getApiUrl()}/api/users/${userId}`);
       
       if (response.ok) {
         const userData = await response.json();
@@ -31,7 +32,7 @@ export default function StoklarimPage() {
   };
 
   const fetchProducts = () => {
-    fetch(`http://localhost:6602/api/products`)
+    fetch(`${getApiUrl()}/api/products`)
       .then(res => res.json())
       .then(data => {
         console.log('Stoklarım - Ürünler yüklendi:', data);
@@ -46,7 +47,7 @@ export default function StoklarimPage() {
     if (!userId || !token) return;
     
     try {
-      await fetch(`http://localhost:6602/api/users/user-stock`, {
+      await fetch(`${getApiUrl()}/api/users/user-stock`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +79,7 @@ export default function StoklarimPage() {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
     if (!userId || !token) return;
-    await fetch(`http://localhost:6602/api/users/user-stock-remove`, {
+    await fetch(`${getApiUrl()}/api/users/user-stock-remove`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

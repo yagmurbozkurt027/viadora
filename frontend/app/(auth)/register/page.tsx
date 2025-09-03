@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getApiUrl } from "../../utils/api";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
@@ -14,7 +15,7 @@ export default function RegisterPage() {
     setLoading(true);
     setMessage("");
     try {
-              const res = await fetch(`http://localhost:6602/api/users/register`, {
+              const res = await fetch(`${getApiUrl()}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
