@@ -49,7 +49,7 @@ const log = require('../utils/logger');
  *                 statistics:
  *                   type: object
  */
-router.get('/:userId', sanitizeInput, asyncHandler(getUserGamification));
+// Bu route'u en sona taşıyacağız
 
 /**
  * @swagger
@@ -196,5 +196,8 @@ router.get('/leaderboard', sanitizeInput, asyncHandler(getLeaderboard));
  *                     type: boolean
  */
 router.get('/:userId/badges', sanitizeInput, asyncHandler(getUserBadges));
+
+// userId route'u en sona taşındı (diğer route'ları etkilememesi için)
+router.get('/:userId', sanitizeInput, asyncHandler(getUserGamification));
 
 module.exports = router; 
