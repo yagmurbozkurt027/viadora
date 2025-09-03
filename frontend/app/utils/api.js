@@ -5,10 +5,10 @@ export const getApiUrl = () => {
     if (window.location.hostname === 'localhost') {
       return 'http://localhost:6602';
     } else {
-      return 'https://butik-proje-h1zam5njc-yagmurs-projects-54afa3cf.vercel.app';
+      return 'https://butik-proje-dn2lve05j-yagmurs-projects-54afa3cf.vercel.app';
     }
   }
-  return 'https://butik-proje-h1zam5njc-yagmurs-projects-54afa3cf.vercel.app';
+  return 'https://butik-proje-dn2lve05j-yagmurs-projects-54afa3cf.vercel.app';
 };
 
 // API çağrıları için helper fonksiyon

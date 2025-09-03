@@ -74,6 +74,8 @@ app.use(cors({
     'https://frontend-flft3jd2i-yagmurs-projects-54afa3cf.vercel.app',
     'https://frontend-hnqrz3a7p-yagmurs-projects-54afa3cf.vercel.app',
     'https://frontend-mmpm5x4rz-yagmurs-projects-54afa3cf.vercel.app',
+    'https://frontend-pepnescms-yagmurs-projects-54afa3cf.vercel.app',
+    'https://frontend-jioj0wn6o-yagmurs-projects-54afa3cf.vercel.app',
     'https://viadora.com.tr',
     'https://butik-proje.vercel.app',
     'https://*.vercel.app'
