@@ -28,7 +28,7 @@ export default function FaturaYonetimi() {
   const loadInvoices = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/invoices`, {
+      const response = await fetch(`http://localhost:6602/api/invoices`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -74,7 +74,7 @@ export default function FaturaYonetimi() {
         status: newInvoice.status
       };
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/invoices`, {
+      const response = await fetch(`http://localhost:6602/api/invoices`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ export default function FaturaYonetimi() {
   const handleDownloadInvoice = async (invoice) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/invoices/${invoice._id}/pdf`, {
+      const response = await fetch(`http://localhost:6602/api/invoices/${invoice._id}/pdf`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -149,7 +149,7 @@ export default function FaturaYonetimi() {
     if (confirm(`"${invoice.invoiceNumber}" faturasını silmek istediğinizden emin misiniz?`)) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/invoices/${invoice._id}`, {
+        const response = await fetch(`http://localhost:6602/api/invoices/${invoice._id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

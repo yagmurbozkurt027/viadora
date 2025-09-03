@@ -30,9 +30,20 @@ export default function GamificationPage() {
   }, [userId]);
 
   const fetchGamification = async () => {
+    if (!userId) {
+      console.log('userId yok, gamification verisi yüklenmiyor');
+      return;
+    }
+    
     try {
       const response = await fetch(`http://localhost:6602/api/gamification/${userId}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
+      console.log('Gamification response:', data);
       
       if (data && typeof data === 'object') {
         setGamification(data);
@@ -49,7 +60,13 @@ export default function GamificationPage() {
   const fetchLeaderboard = async () => {
     try {
       const response = await fetch(`http://localhost:6602/api/gamification/leaderboard`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
+      console.log('Leaderboard response:', data);
       
       if (Array.isArray(data)) {
         setLeaderboard(data);
@@ -64,9 +81,21 @@ export default function GamificationPage() {
   };
 
   const fetchBadges = async () => {
+    if (!userId) {
+      console.log('userId yok, rozetler yüklenmiyor');
+      setLoading(false);
+      return;
+    }
+    
     try {
       const response = await fetch(`http://localhost:6602/api/gamification/${userId}/badges`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
+      console.log('Badges response:', data);
       
       if (Array.isArray(data)) {
         setBadges(data);

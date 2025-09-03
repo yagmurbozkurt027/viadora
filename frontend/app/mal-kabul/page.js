@@ -29,7 +29,7 @@ export default function MalKabulYonetimi() {
   const loadReceipts = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/goods-receipt`, {
+      const response = await fetch(`http://localhost:6602/api/goods-receipt`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -64,7 +64,7 @@ export default function MalKabulYonetimi() {
         status: newReceipt.status
       };
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/goods-receipt`, {
+      const response = await fetch(`http://localhost:6602/api/goods-receipt`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
