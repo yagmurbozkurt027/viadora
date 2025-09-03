@@ -16,10 +16,11 @@ export default function StoklarimPage() {
     try {
       setLoading(true);
       const userId = localStorage.getItem("userId");
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/users/${userId}`);
+      const response = await fetch(`http://localhost:6602/api/users/${userId}`);
       
       if (response.ok) {
         const userData = await response.json();
+        console.log('Stoklarım - Kullanıcı stokları:', userData.stocks);
         setStocks(userData.stocks || []);
       }
     } catch (error) {
@@ -30,9 +31,12 @@ export default function StoklarimPage() {
   };
 
   const fetchProducts = () => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/products`)
+    fetch(`http://localhost:6602/api/products`)
       .then(res => res.json())
-      .then(data => setProducts(data));
+      .then(data => {
+        console.log('Stoklarım - Ürünler yüklendi:', data);
+        setProducts(data);
+      });
   };
 
   const updateStock = async (productId, changeAmount) => {
@@ -42,7 +46,7 @@ export default function StoklarimPage() {
     if (!userId || !token) return;
     
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/users/user-stock`, {
+      await fetch(`http://localhost:6602/api/users/user-stock`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +78,7 @@ export default function StoklarimPage() {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
     if (!userId || !token) return;
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6602'}/api/users/user-stock-remove`, {
+    await fetch(`http://localhost:6602/api/users/user-stock-remove`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
